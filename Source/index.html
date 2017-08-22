@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fitbit HeartRate Detector</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      
+      bottom:0;
+      width:100%;
+      background-color: #555;
+      color: white;
+      padding: 10px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+      
+      .div{
+        width: 150 px;
+        height: 150px;
+        overflow:scroll;
+          
+      }
+  </style>
+</head>
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script src="http://cs4085.weixianlow.me/js/firebaseConfig.js"></script>
+<script>
+  // Initialize Firebase
+  
+  firebase.initializeApp(config);
+</script>
+    
+<script src="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'http://cs4085.weixianlow.me/load.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+    
+    
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Fitbit HeartRate Detector</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center" style="height:50vh">    
+  
+    
+    <div class="col-sm-8 text-left"> 
+      <h1>Welcome</h1>
+      <p>Fitbit HeartRate detector utilizes your Fitbit device's heart rate sensor to monitor your heart rate every hour and keep tracks of your heart rate. In the case of our application receives more than 24 hours of zero value heart rate, we would send out notification of your possible death to email address that you have provided during the setup of your account. A copy of your important document uploaded to your account will also be forwarded together to the email address you have provided. </p>
+      <hr>
+      <p>To begin, just login with your Google account on the right side of this page and we will take you through the setups needed to get you all setup!</p>
+
+        
+    </div>
+    <div class="col-sm-4 sidenav">
+      <p style="text-align: center">Please login to the dashboard using a Google account. </p>
+        <div id="firebaseui-auth-container"></div>
+    </div>
+ 
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Webpage design created by w3schools.com</p>
+</footer>
+
+</body>
+</html>
